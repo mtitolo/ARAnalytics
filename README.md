@@ -24,6 +24,7 @@ Usage
 
 Setup
 ----
+If the provider you are using has a `.framework` or other library that is not controlled via CocoaPods, i.e. Crashlytics or Google Analytics, add that to your app target as usual.  
 
 Once you've `pod installed`'d the libraries you can either use the individual (for example) `[ARAnalytics setupTestFlightWithTeamToken:@"TOKEN"]` methods to start up each indiviual analytics platform or use the generic setupWithAnalytics with our constants.
 
