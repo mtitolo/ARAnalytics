@@ -41,5 +41,9 @@
     CLSLog(@"%@", parsedString);
 }
 
+- (void)didShowNewPageView:(NSString *)pageTitle {
+    CLSLog(@"Screen view - %@", pageTitle);
+}
+
 #endif
 @end
