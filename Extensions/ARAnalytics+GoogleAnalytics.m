@@ -8,15 +8,16 @@
 
 #import "ARAnalytics+GoogleAnalytics.h"
 #import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @implementation ARAnalytics (GoogleAnalytics)
 
 + (void)event:(NSString *)event withCategory:(NSString *)category withLabel:(NSString *)label withValue:(NSNumber *)value {
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:category action:event label:label value:value] build]];
 }
 
 + (void)socialEvent:(NSString *)event onNetwork:(NSString *)network withAddress:(NSString *)address {
-    [[[GAI sharedInstance] defaultTracker] sendSocial:network withAction:event withTarget:address];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createSocialWithNetwork:network action:event target:address] build]];
 }
 
 + (void)sendUncaughtExceptionsToGoogleAnalytics {

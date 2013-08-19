@@ -32,18 +32,19 @@
 }
 
 - (void)event:(NSString *)event withProperties:(NSDictionary *)properties {
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:nil withAction:event withLabel:nil withValue:nil];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:nil action:event label:nil value:nil] build]];
 }
 
 - (void)didShowNewPageView:(NSString *)pageTitle {
-    [self event:@"Screen view" withProperties:@{ @"screen": pageTitle }];
-    [[[GAI sharedInstance] defaultTracker] trackView:pageTitle];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:pageTitle];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)logTimingEvent:(NSString *)event withInterval:(NSNumber *)interval {
     [self event:event withProperties:@{ @"length": interval }];
-
-    [[[GAI sharedInstance] defaultTracker] sendTimingWithCategory:nil withValue:interval.doubleValue withName:event withLabel:nil];
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTimingWithCategory:nil interval:interval name:event label:nil] build]];
 }
 
 #endif
