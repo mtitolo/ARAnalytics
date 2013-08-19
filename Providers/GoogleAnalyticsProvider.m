@@ -9,6 +9,8 @@
 #import "GoogleAnalyticsProvider.h"
 #import "ARAnalyticsProviders.h"
 #import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @implementation GoogleAnalyticsProvider
 #ifdef AR_GOOGLEANALYTICS_EXISTS
